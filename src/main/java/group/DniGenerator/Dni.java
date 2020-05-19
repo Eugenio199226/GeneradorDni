@@ -11,16 +11,19 @@ public class Dni {
 	{
     	Pattern p = Pattern.compile("[0-9]{8}[A-Z a-z]");
     	Matcher mat = p.matcher(dni);
+    	//Check format
     	if(mat.matches()) 
     	{
     		try 
     		{
     			System.out.println("Formato Dni Valido");
         		System.out.println("Calculando letra del Dni.....");
+        		//get letter
         		String letra=dni.substring(dni.length()-1);
+        		//get number
         		String numeros= dni.substring(0,dni.length()-1);
     			int num = Integer.parseInt(numeros);
-    			
+    			//Validation of letter and numbers
     			if(Boolean.TRUE.equals(comparador(letra,num))) 
     			{
     				System.out.println("Dni Valido.");
@@ -40,6 +43,7 @@ public class Dni {
 	}
 	 public Boolean comparador(String letra,int numero) 
 	    {
+		 	//value between 0-22
 		 	int valorCaculado=numero%23;
 		 	Hashtable<String, Integer> dniLetras= new Hashtable<String, Integer>();
 		 	dniLetras.put("T", 0);
@@ -67,6 +71,7 @@ public class Dni {
 		 	dniLetras.put("E", 22);
 		 	Iterator<Map.Entry<String, Integer>> itr = dniLetras.entrySet().iterator();
 		 	Map.Entry<String, Integer> entry = null;
+		 	//Search number get letter associate with number and compare with String letra
 		 	while(itr.hasNext()) 
 		 	{
 		 		entry = itr.next();

@@ -4,31 +4,24 @@ import java.util.Formatter;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Random;
 
 public class Generador {
 	public String generadorNum() 
 	{
-		int number=  (int) Math.floor(Math.random()*99999999+1);
-		
+		Random r = new Random();  
+		//number between 0 and 99999999
+		int number=  r.nextInt(99999999);
+		//generating format
 		Formatter obj = new Formatter();
-		String letra=comparador(number);
+		String letra=generadorLetra(number);
 		String cuerpoDni=String.valueOf(obj.format("%08d", number)+letra);
-
-		/*for ( int i=0;i <= 8;i++) 
-		{
-			if(i==0){
-				i=String.valueOf(number).length();
-				sb.append(number);
-			}else 
-			{
-				sb.append("0");
-			}
-		}*/
+		obj.close();
 		return cuerpoDni;
 
 		
 	}
-	public String comparador(int numero) 
+	public String generadorLetra(int numero) 
     {
 	 	int valorCaculado=numero%23;
 	 	Hashtable<String, Integer> dniLetras= new Hashtable<String, Integer>();
